@@ -2,14 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.getElementById("search");
   const resultsElement = document.getElementById("results");
 
-  let currentIndex = -1; // Track the currently highlighted index
-  let results = []; // Store the filtered tab results
-  let allTabs = []; // Store all tabs for initial display
+  let currentIndex = -1;
+  let results = [];
+  let allTabs = [];
 
-  // Automatically focus the search input when the popup is loaded
   searchInput.focus();
 
-  // Fetch all tabs
   chrome.tabs.query({}, (tabs) => {
     allTabs = tabs.map((tab) => ({
       id: tab.id,
@@ -17,13 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
       url: tab.url,
     }));
 
-    // Initially display all tabs
     displayResults(allTabs);
 
     searchInput.addEventListener("input", (e) => {
       const query = e.target.value.toLowerCase();
       resultsElement.innerHTML = "";
-      currentIndex = -1; // Reset the highlight index
 
       results = allTabs.filter(
         (tab) =>
@@ -31,18 +27,17 @@ document.addEventListener("DOMContentLoaded", () => {
           tab.url.toLowerCase().includes(query),
       );
 
+      currentIndex = results.length > 0 ? 0 : -1;
       displayResults(results);
     });
 
-    // Handle keyboard navigation
     searchInput.addEventListener("keydown", (e) => {
       const listItems = resultsElement.querySelectorAll("li");
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
         if (currentIndex < listItems.length - 1) {
-          if (currentIndex >= 0)
-            listItems[currentIndex].classList.remove("highlight");
+          listItems[currentIndex].classList.remove("highlight");
           currentIndex++;
           listItems[currentIndex].classList.add("highlight");
           listItems[currentIndex].scrollIntoView({ block: "nearest" });
@@ -66,22 +61,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Display the results in the UI
   function displayResults(tabs) {
     resultsElement.innerHTML = "";
     results = tabs;
 
-    tabs.forEach((tab, index) => {
-      const li = document.createElement("li");
-      li.textContent = tab.title;
-      li.dataset.index = index;
+    // Show initial tabs without highlighting if no search has been performed
+    if (currentIndex === -1) {
+      tabs.forEach((tab, index) => {
+        const li = document.createElement("li");
+        li.textContent = tab.title;
+        li.dataset.index = index;
 
-      // Handle click event
-      li.addEventListener("click", () => {
-        chrome.tabs.update(tab.id, { active: true });
+        li.addEventListener("click", () => {
+          chrome.tabs.update(tab.id, { active: true });
+        });
+
+        resultsElement.appendChild(li);
       });
+    } else {
+      // Show search results with highlighting
+      tabs.forEach((tab, index) => {
+        const li = document.createElement("li");
+        li.textContent = tab.title;
+        li.dataset.index = index;
 
-      resultsElement.appendChild(li);
-    });
+        if (index === currentIndex) {
+          li.classList.add("highlight");
+        }
+
+        li.addEventListener("click", () => {
+          chrome.tabs.update(tab.id, { active: true });
+        });
+
+        resultsElement.appendChild(li);
+      });
+    }
   }
 });
