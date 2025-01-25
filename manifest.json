@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Fuzzy Tab Search",
+  "version": "1.0",
+  "description": "Quickly fuzzy search between your open tabs.",
+  "permissions": ["tabs", "storage"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "fuzzy_search": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F"
+      },
+      "description": "Activate fuzzy search for tabs"
+    }
+  }
+}

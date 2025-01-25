@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fuzzy Tab Search</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                width: 400px;
+                height: 600px;
+                overflow-y: auto;
+            }
+            .container {
+                padding: 10px;
+            }
+            input {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                font-size: 16px;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                max-height: 500px;
+                overflow-y: auto;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+            li {
+                padding: 8px;
+                margin-bottom: 5px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            li:hover {
+                background-color: #f0f0f0;
+            }
+            li.highlight {
+                background-color: #d3d3d3;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <input type="text" id="search" placeholder="Search tabs..." />
+            <ul id="results"></ul>
+        </div>
+        <script type="module" src="popup.js"></script>
+    </body>
+</html>
