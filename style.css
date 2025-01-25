@@ -1,66 +1,82 @@
-/* General body and container styles */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: "Segoe UI", "Roboto", "Open Sans", sans-serif;
+    width: 400px;
+    height: 600px;
+    overflow-y: auto;
+    background-color: #f5f7fa;
 }
 
-#popup-container {
-    background-color: #fff;
+.container {
+    padding: 20px;
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    padding: 20px;
-    box-sizing: border-box;
+    margin: 15px;
 }
 
-input[type="text"] {
+input {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+    padding: 12px;
     margin-bottom: 15px;
-    outline: none;
-    transition: border-color 0.3s;
+    font-size: 16px;
+    border: 2px solid #e1e4e8;
+    border-radius: 6px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
 }
 
-input[type="text"]:focus {
-    border-color: #007bff;
+input:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 5px rgba(74, 144, 226, 0.2);
 }
 
 ul {
-    list-style-type: none;
-    margin: 0;
+    list-style: none;
     padding: 0;
-    max-height: 250px;
+    margin: 0;
+    max-height: 500px;
     overflow-y: auto;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
+    background-color: white;
 }
 
 li {
-    padding: 10px;
+    padding: 12px;
+    margin-bottom: 5px;
+    border: 1px solid #e1e4e8;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 14px;
-    border-bottom: 1px solid #ddd;
-    transition: background-color 0.3s;
+    transition: all 0.2s ease;
 }
 
 li:hover {
-    background-color: #f0f0f0;
+    background-color: #f8f9fa;
+    transform: translateX(2px);
 }
 
 li.highlight {
-    background-color: #d3e0ff;
+    background-color: #e8f0fe;
+    border-color: #4a90e2;
 }
 
-@media (max-width: 350px) {
-    #popup-container {
-        width: 250px;
-    }
+/* Customize scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }
