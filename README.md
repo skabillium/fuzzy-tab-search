@@ -5,7 +5,7 @@ A Chrome extension that helps you quickly find and switch between open tabs usin
 ## Features
 
 - 🔍 Instantly search through all open tabs
-- ⌨️ Keyboard shortcuts for quick access (Ctrl+Shift+F / MacCtrl+Shift+F)
+- ⌨️ Keyboard shortcuts for quick access (Ctrl+F / MacCtrl+F)
 - ⬆️⬇️ Arrow key navigation through search results
 - 🎯 Search matches both tab titles and URLs
 - 🖱️ Click or press Enter to switch to selected tab
@@ -37,8 +37,8 @@ A Chrome extension that helps you quickly find and switch between open tabs usin
 
 | Key Combination | Action |
 |----------------|--------|
-| Ctrl+Shift+F (Windows/Linux) | Open search popup |
-| MacCtrl+Shift+F (Mac) | Open search popup |
+| Ctrl+F (Windows/Linux) | Open search popup |
+| MacCtrl+F (Mac) | Open search popup |
 | ↑ (Up Arrow) | Move selection up |
 | ↓ (Down Arrow) | Move selection down |
 | Enter | Switch to selected tab |
