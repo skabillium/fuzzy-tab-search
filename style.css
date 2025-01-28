@@ -87,12 +87,14 @@ li.highlight {
     display: flex;
     align-items: center;
     padding: 8px;
-    border-bottom: 1px solid #e0e0e0;
+    border: 1px solid transparent; /* Ensures consistent border width */
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 #results li.highlight {
     background-color: #e0f7fa;
+    border: 1px solid #4a90e2; /* Explicit border ensures no size shift */
 }
 
 /* Style for the favicon */
