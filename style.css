@@ -80,3 +80,23 @@ li.highlight {
 ::-webkit-scrollbar-thumb:hover {
     background: #a8a8a8;
 }
+
+/* Style for the list items */
+#results li {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #e0e0e0;
+    cursor: pointer;
+}
+
+#results li.highlight {
+    background-color: #e0f7fa;
+}
+
+/* Style for the favicon */
+#results li img.favicon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}

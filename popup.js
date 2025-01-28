@@ -8,15 +8,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   searchInput.focus();
 
+  // Fetch all tabs
   chrome.tabs.query({}, (tabs) => {
     allTabs = tabs.map((tab) => ({
       id: tab.id,
       title: tab.title,
       url: tab.url,
+      favIconUrl: tab.favIconUrl || "default-icon.png", // Use a fallback if no favicon
     }));
 
     displayResults(allTabs);
 
+    // Filter tabs based on input
     searchInput.addEventListener("input", (e) => {
       const query = e.target.value.toLowerCase();
       resultsElement.innerHTML = "";
@@ -31,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
       displayResults(results);
     });
 
+    // Navigate and select tabs using the keyboard
     searchInput.addEventListener("keydown", (e) => {
       const listItems = resultsElement.querySelectorAll("li");
 
@@ -61,40 +65,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // Display results in the dropdown
   function displayResults(tabs) {
     resultsElement.innerHTML = "";
     results = tabs;
 
-    // Show initial tabs without highlighting if no search has been performed
-    if (currentIndex === -1) {
-      tabs.forEach((tab, index) => {
-        const li = document.createElement("li");
-        li.textContent = tab.title;
-        li.dataset.index = index;
+    tabs.forEach((tab, index) => {
+      const li = document.createElement("li");
+      li.dataset.index = index;
 
-        li.addEventListener("click", () => {
-          chrome.tabs.update(tab.id, { active: true });
-        });
+      // Add favicon and title
+      const favicon = document.createElement("img");
+      favicon.src = tab.favIconUrl;
+      favicon.alt = "favicon";
+      favicon.className = "favicon";
 
-        resultsElement.appendChild(li);
+      const title = document.createElement("span");
+      title.textContent = tab.title;
+
+      li.appendChild(favicon);
+      li.appendChild(title);
+
+      if (index === currentIndex) {
+        li.classList.add("highlight");
+      }
+
+      li.addEventListener("click", () => {
+        chrome.tabs.update(tab.id, { active: true });
       });
-    } else {
-      // Show search results with highlighting
-      tabs.forEach((tab, index) => {
-        const li = document.createElement("li");
-        li.textContent = tab.title;
-        li.dataset.index = index;
 
-        if (index === currentIndex) {
-          li.classList.add("highlight");
-        }
-
-        li.addEventListener("click", () => {
-          chrome.tabs.update(tab.id, { active: true });
-        });
-
-        resultsElement.appendChild(li);
-      });
-    }
+      resultsElement.appendChild(li);
+    });
   }
 });
