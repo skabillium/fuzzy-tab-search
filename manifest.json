@@ -10,8 +10,8 @@
   "commands": {
     "open-extension": {
       "suggested_key": {
-        "default": "Ctrl+Shift+F",
-        "mac": "MacCtrl+Shift+F"
+        "default": "Ctrl+F",
+        "mac": "MacCtrl+F"
       },
       "description": "Open the tab search popup"
     }

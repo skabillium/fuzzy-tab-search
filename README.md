@@ -21,7 +21,7 @@ A Chrome extension that helps you quickly find and switch between open tabs usin
 
 ### Opening the Search
 
-- Use the keyboard shortcut: `Ctrl+Shift+F` (Windows/Linux) or `MacCtrl+Shift+F` (Mac)
+- Use the keyboard shortcut: `Ctrl+F` (Windows/Linux) or `MacCtrl+F` (Mac)
 - Click the extension icon in your Chrome toolbar
 
 ### Searching
