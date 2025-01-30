@@ -1,6 +1,10 @@
 # Fuzzy Tab Search
 
-A Chrome extension that helps you quickly find and switch between open tabs using fuzzy search.
+A Chrome extension that helps you quickly find and switch between open tabs using fuzzy search. This project was made
+for educational purposes and to practice building Chrome extensions. This functionality is already available in Chrome
+via the following keyboard shortcuts:
+- `Ctrl+Shift+A` for Windows/Linux
+- `Cmd+Shift+A` for Mac
 
 ## Features
 
